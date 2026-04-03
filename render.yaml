@@ -1,13 +1,14 @@
 services:
   - type: web
-    name: cat-prep-frontend
-    runtime: node
+    name: cat-prep-ai
+    runtime: python
+    pythonVersion: 3.13.15
     plan: free
-    buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npm run build && npx serve -s build -l 3000
+    buildCommand: pip install --upgrade pip && pip install -r ai-service/requirements.txt
+    startCommand: cd ai-service && python -m uvicorn main:app --host 0.0.0.0 --port 8000
     envVars:
-      - key: REACT_APP_API_URL
-        value: https://cat-prep-backend.onrender.com/api
+      - key: GROQ_API_KEY
+        sync: false
 
   - type: web
     name: cat-prep-backend
@@ -26,11 +27,11 @@ services:
         value: production
 
   - type: web
-    name: cat-prep-ai
-    runtime: python
+    name: cat-prep-frontend
+    runtime: node
     plan: free
-    buildCommand: pip install -r ai-service/requirements.txt
-    startCommand: cd ai-service && python -m uvicorn main:app --host 0.0.0.0 --port 8000
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm run build && npx serve -s build -l 3000
     envVars:
-      - key: GROQ_API_KEY
-        sync: false
+      - key: REACT_APP_API_URL
+        value: https://cat-prep-backend.onrender.com/api
