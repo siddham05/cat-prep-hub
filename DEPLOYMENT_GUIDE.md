@@ -38,12 +38,12 @@ Replace `YOUR_USERNAME` with your GitHub username and `cat-prep-hub` with your r
 6. **Add Environment Variables**:
    - In the `cat-prep-ai` service, add:
      - **Key**: `GROQ_API_KEY`
-     - **Value**: `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` (your Groq key)
+     - **Value**: (your actual Groq API key here)
 7. **Click "Deploy"**
 
 ### Option B: Manual Setup (if render.yaml doesn't work)
 
-#### Service 1: Frontend
+### Service 1: Frontend
 
 1. **Go to Render**: https://dashboard.render.com
 2. **Click "New Web Service"**
@@ -88,7 +88,7 @@ Replace `YOUR_USERNAME` with your GitHub username and `cat-prep-hub` with your r
    - **Plan**: Free
 3. **Environment Variables**:
    ```
-   GROQ_API_KEY = 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
+   GROQ_API_KEY = (your Groq API key here)
    ```
 4. **Deploy**
 
